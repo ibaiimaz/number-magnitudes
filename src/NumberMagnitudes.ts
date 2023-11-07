@@ -14,12 +14,10 @@ export class NumberMagnitudes {
             this.stringParser
         );
 
-        const parsedNumbers = [];
-        for (const number of numbers) {
+        return numbers.reduce((acc: string[], number: number) => {
             const { result } = parseNumber(number);
-            parsedNumbers.push(result as string);
-        }
-        return parsedNumbers;
+            return ([ ...acc, result as string]);
+        }, []);
     }
 
     private parseNumberBy = (...parsers: Parser[]) => (number: number) => {
